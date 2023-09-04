@@ -17,11 +17,12 @@ export default function App() {
   useEffect(() =>{
     async function getNotes(){
       const notes = await notesAPI.getAll();
-      console.log(notes)
       setNotes(notes)
     }
-    getNotes()
-  }, []);
+    if (user) {
+      getNotes();
+    }
+  }, [user]);
 
   const addNote =  async (note) => {
     const newNote = await notesAPI.addNew(note)
@@ -48,5 +49,3 @@ export default function App() {
     </main>
   );
 }
-
-
